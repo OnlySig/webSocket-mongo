@@ -19,3 +19,7 @@ export function emitirTextArea(textValue) {
 socket.on("text_area_client", (element) => {
   atualizaTextoEditor(element);
 });
+
+export function excluirDoc(nameDocument) {
+  socket.emit("deletar_documento", nameDocument);
+}

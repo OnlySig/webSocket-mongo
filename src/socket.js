@@ -1,12 +1,30 @@
-import { atualizaDoc, findAll, findDoc } from "./controllerDb.js";
+import { atualizaDoc, createDoc, deleteDoc, findAll, findDoc } from "./controllerDb.js";
 import io from "./server.js";
 
 io.on("connection", async (socket)=>{
   socket.on("listaDocumento", async (returnDocs)=>{
-
     const findAllDocs = await findAll();
     returnDocs(findAllDocs);
-  
+  });
+
+  socket.on("deletar_documento", async document => {
+    const existeDoc = await findDoc(document);
+    if(!existeDoc) return; 
+    else {
+      const res = await deleteDoc(existeDoc._id);
+      res.acknowledged ? io.emit("remover_front", existeDoc.nome) : "";
+      console.log(res);
+    }   
+  });
+
+  socket.on("create_document", async newDocName => {
+    const existeDoc = await findDoc(newDocName);
+    if(existeDoc) {
+      io.emit("documento_existente", newDocName);
+      return;
+    };
+    const res = await createDoc(newDocName);
+    res.acknowledged ? io.emit("add_document_front", newDocName) : "";
   });
 
   socket.on("url-document", async (url_document, returnTxtCallback) => {//*esse 3º parâmetro returnTxtCallback "resume" um "socket.on" la no frontend, fazendo assim a NÃO necessidade de um socket.on

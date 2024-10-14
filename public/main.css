@@ -1,0 +1,16 @@
+.documento {
+  display: flex;
+}
+
+.excluir {
+  background-color: transparent;
+  border: 1px solid rgb(245, 52, 52);
+  color: rgb(238, 159, 159);
+  padding: 6px 12px;
+  transition: .2s all;
+}
+
+.excluir:hover {
+  background-color: rgb(245, 52, 52);
+  color: white;
+}

@@ -10,7 +10,7 @@ export default [
     },
     rules: {
       indent: ["error", 2],
-      quotes: ["error", "double"], // Alterado para aspas simples
+      quotes: ["error", "double"],
       semi: ["error", "always"],
     },
   },
