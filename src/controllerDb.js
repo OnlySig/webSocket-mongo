@@ -13,7 +13,13 @@ const atualizaDoc = async (texto, nome) => {
   return att;
 };
 
+async function findAll() {
+  const docs = await documentos.find().toArray();//!sem esse toArray() ele retorna um objeto cheio de informações tecnicas do banco de dados.
+  return docs;
+} 
+
 export {
   findDoc,
-  atualizaDoc
+  atualizaDoc,
+  findAll
 };
