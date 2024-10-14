@@ -1,4 +1,4 @@
-import { atualizaTextoEditor } from "./documento.js";
+import { atualizaTextoEditor, voltarParaIndex } from "./documento.js";
 
 // eslint-disable-next-line no-undef
 const socket = io();
@@ -23,7 +23,6 @@ socket.on("text_area_client", (element) => {
 export function excluirDoc(nameDocument, isHrefDoc = false) {
   socket.emit("deletar_documento", nameDocument, isHrefDoc);
 }
-socket.on("remover_document", (nameDocument) => {
-  alert(`Pagina do documento ${nameDocument} foi excluido!`);
-  window.location.replace("/");
+socket.on("remover_front", (nameDocument) => {
+  voltarParaIndex(nameDocument);
 });

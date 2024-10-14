@@ -4,6 +4,7 @@ import { excluirDoc, getInputValue } from "./socket_index.js";
 const form = document.querySelector("#form-adiciona-documento");
 const docList = document.querySelector("#lista-documentos");
 const res = document.querySelector("#res");
+
 form.addEventListener("submit", (e)=>{
   e.preventDefault();
   const inputDoc = e.target.elements[0];
@@ -15,7 +16,6 @@ form.addEventListener("submit", (e)=>{
 export function mostraErro(erroMsg) {
   res.innerHTML = erroMsg;
 }
-
 export function ancorDocs(nome) {
   const newDiv = document.createElement("div");
   newDiv.classList.add(nome);
@@ -34,7 +34,6 @@ export function ancorDocs(nome) {
   newDiv.appendChild(newBtn);
 
   docList.appendChild(newDiv);
-
   const btnExcluir = document.querySelectorAll(".excluir");
   btnExcluir.forEach(btn => {
     btn.addEventListener("click", (e)=>{
@@ -45,6 +44,5 @@ export function ancorDocs(nome) {
 
 export function removerDoc(nomeDoDocumento) {
   const rmElement = document.querySelector(`.${nomeDoDocumento}`);
-  rmElement ? rmElement.remove() : alert("Elemento não encontrado!");
+  rmElement.remove();
 }
-

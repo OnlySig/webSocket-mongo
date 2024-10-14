@@ -3,9 +3,9 @@ import { ancorDocs, mostraErro, removerDoc } from "./index.js";
 // eslint-disable-next-line no-undef
 const socket = io();
 
-socket.emit("listaDocumento", (documents) => documents.forEach(doc => {
-  ancorDocs(doc.nome); 
-}));
+socket.emit("listaDocumento", (documents) => documents.forEach(doc => 
+  ancorDocs(doc.nome)
+));
 
 export function getInputValue(inpValue) {
   socket.emit("create_document", inpValue);

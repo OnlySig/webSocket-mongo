@@ -18,6 +18,13 @@ textarea.addEventListener("keyup", () => {
   emitirTextArea(textarea.value);
 });
 
+export function voltarParaIndex(nameDocument) {
+  if(path === nameDocument) {
+    alert(`Pagina do documento ${nameDocument} foi excluido!`);
+    window.location.replace("/");
+  }
+}
+
 export function atualizaTextoEditor(element) {
   element ? textarea.value = element : "";
 }
