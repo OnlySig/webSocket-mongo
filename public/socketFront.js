@@ -20,6 +20,10 @@ socket.on("text_area_client", (element) => {
   atualizaTextoEditor(element);
 });
 
-export function excluirDoc(nameDocument) {
-  socket.emit("deletar_documento", nameDocument);
+export function excluirDoc(nameDocument, isHrefDoc = false) {
+  socket.emit("deletar_documento", nameDocument, isHrefDoc);
 }
+socket.on("remover_document", (nameDocument) => {
+  alert(`Pagina do documento ${nameDocument} foi excluido!`);
+  window.location.replace("/");
+});

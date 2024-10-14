@@ -7,13 +7,16 @@ io.on("connection", async (socket)=>{
     returnDocs(findAllDocs);
   });
 
-  socket.on("deletar_documento", async document => {
+  socket.on("deletar_documento", async (document, isHrefDoc) => {
     const existeDoc = await findDoc(document);
     if(!existeDoc) return; 
     else {
       const res = await deleteDoc(existeDoc._id);
-      res.acknowledged ? io.emit("remover_front", existeDoc.nome) : "";
-      console.log(res);
+      if(isHrefDoc) {
+        res.acknowledged ? io.emit("remover_document", existeDoc.nome) : "";
+      } else {
+        res.acknowledged ? io.emit("remover_front", existeDoc.nome) : "";
+      }
     }   
   });
 

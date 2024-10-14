@@ -3,15 +3,14 @@ const textarea = document.querySelector("#editor-texto");
 const titleDoc = document.querySelector("#titulo-documento");
 const btnExcluir = document.querySelector("#excluir-documento");
 const path = window.location.href.split("=")[1];
-titleDoc.innerHTML = path;
+titleDoc.innerHTML = path || "Documento sem título";
 
 urlParams(path);
 
 btnExcluir.addEventListener("click", () => {
-  const isDell = confirm(`Quer deletar ${path}?`);
+  const isDell = confirm(`Deletar documento ${path}?`);
   if(isDell) {
-    excluirDoc(path);
-    window.location.replace("/");
+    excluirDoc(path, true);
   }
 });
 

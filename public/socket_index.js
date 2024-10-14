@@ -19,10 +19,10 @@ socket.on("add_document_front", nameDocument => {
   ancorDocs(nameDocument);
 });
 
-socket.on("remover_front", nameDocument => {
+socket.on("remover_front", (nameDocument,) => {
   removerDoc(nameDocument);
 });
 
-export function excluirDoc(nameDocument) {
-  socket.emit("deletar_documento", nameDocument);
+export function excluirDoc(nameDocument, isHrefDoc = false) {
+  socket.emit("deletar_documento", nameDocument, isHrefDoc);
 }
