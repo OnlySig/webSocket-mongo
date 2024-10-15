@@ -26,7 +26,7 @@ export function ancorDocs(nome) {
   newBtn.innerHTML = "x";
 
   const newLink = document.createElement("a");
-  newLink.href = `documento.html?nome=${nome}`;
+  newLink.href = `./documento/index.html?nome=${nome}`;
   newLink.classList.add("list-group-item", "list-group-item-action");
   newLink.textContent = nome;
 

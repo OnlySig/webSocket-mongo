@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const currentPath = url.fileURLToPath(import.meta.url);
-const publicDirect = path.join(currentPath, "../../", "public");
+const publicDirect = path.join(currentPath, "../..", "public");
 app.use(express.static(publicDirect));
 
 const serverHttp = http.createServer(app);

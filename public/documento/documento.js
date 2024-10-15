@@ -1,4 +1,4 @@
-import { emitirTextArea, excluirDoc, urlParams } from "./socketFront.js";
+import { emitirTextArea, excluirDoc, urlParams } from "./socket_front_documento.js";
 const textarea = document.querySelector("#editor-texto");
 const titleDoc = document.querySelector("#titulo-documento");
 const btnExcluir = document.querySelector("#excluir-documento");
@@ -21,7 +21,7 @@ textarea.addEventListener("keyup", () => {
 export function voltarParaIndex(nameDocument) {
   if(path === nameDocument) {
     alert(`Pagina do documento ${nameDocument} foi excluido!`);
-    window.location.replace("/");
+    window.location.replace("../index.html");
   }
 }
 
