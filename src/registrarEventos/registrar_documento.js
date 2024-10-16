@@ -1,8 +1,9 @@
+import { documentos } from "../config/dbConnect.js";
 import { atualizaDoc, deleteDoc, findDoc } from "../controllerDb.js";
 
 export default function registrar_documento(socket, io) {
   socket.on("deletar_documento", async (document) => {
-    const existeDoc = await findDoc(document);
+    const existeDoc = await findDoc(documentos, document);
     if(!existeDoc) return; 
     else {
       const res = await deleteDoc(existeDoc._id);
@@ -13,7 +14,7 @@ export default function registrar_documento(socket, io) {
   socket.on("url-document", async (url_document, returnTxtCallback) => {//*esse 3º parâmetro returnTxtCallback "resume" um "socket.on" la no frontend, fazendo assim a NÃO necessidade de um socket.on
 
     socket.join(url_document);
-    const textValues = await findDoc(url_document);
+    const textValues = await findDoc(documentos, url_document);
     if(textValues) returnTxtCallback(textValues.texto);//?socket.emit("doc_text", textValues.texto);
 
     socket.on("text_area", async (textElement)=>{

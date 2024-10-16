@@ -1,3 +1,4 @@
+import { documentos } from "../config/dbConnect.js";
 import { createDoc, findAll, findDoc } from "../controllerDb.js";
 
 export default function registrarStart(socket, io) {
@@ -7,7 +8,7 @@ export default function registrarStart(socket, io) {
   });
 
   socket.on("create_document", async newDocName => {
-    const existeDoc = await findDoc(newDocName);
+    const existeDoc = await findDoc(documentos, newDocName);
     if(existeDoc) {
       return io.emit("documento_existente", newDocName);
     };

@@ -8,7 +8,7 @@ const createDoc = async (nome) => {
   return newDoc;
 };
 
-const findDoc = async (nome) => documentos.findOne({ nome });
+const findDoc = async (colecao, nome) => colecao.findOne({ nome });
 
 const atualizaDoc = async (texto, nome) => {
   const att = documentos.updateOne({
