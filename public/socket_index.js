@@ -1,7 +1,12 @@
 import { ancorDocs, mostraErro, removerDoc } from "./index.js";
+import { obterCookie } from "./utils/cookies.js";
 
 // eslint-disable-next-line no-undef
-const socket = io();
+const socket = io("/usuarios", {
+  auth: {
+    token: obterCookie("tokenJwt") //? dessa forma vc consegue passar o token de acesso para o back-end, antes mesmo da conexão com o bd.
+  }
+});
 
 socket.on("connect_error", (error) => { //? evento interno do socket.io, disparado pelo back quando tem um middleware vulgo next retorna um erro;
   alert(error);

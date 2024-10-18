@@ -5,11 +5,16 @@ import registrar_login from "./registrarEventos/registrar_login.js";
 import io from "./server.js";
 import autorizarUsuario from "./middlewares/autorizarUsuario.js";
 
-io.use(autorizarUsuario);
+const nspUsuarios = io.of("/usuarios"); //?nsp = namespaces / https://www.alura.com.br/artigos/namespaces-evitar-conflitos-codigo-javascript
+
+nspUsuarios.use(autorizarUsuario);
+
+nspUsuarios.on("connection", (socket)=>{
+  registrarStart(socket, nspUsuarios);
+  registrar_documento(socket, nspUsuarios);
+});
 
 io.on("connection", async (socket)=>{
-  registrarStart(socket, io);
-  registrar_documento(socket, io);
   registrar_cadastro(socket, io);
   registrar_login(socket, io);
 });
