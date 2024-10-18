@@ -1,9 +1,25 @@
 import "./socket_index.js";
 import { excluirDoc, getInputValue } from "./socket_index.js";
+import { logoutCookie, obterCookie } from "./utils/cookies.js";
 
 const form = document.querySelector("#form-adiciona-documento");
 const docList = document.querySelector("#lista-documentos");
 const res = document.querySelector("#res");
+const btnSair = document.querySelector("#botao-logout");
+
+// const tokenJwt = obterCookie("tokenJwt"); 
+// if(!tokenJwt) {
+//   alert("Autorização negada, porfavor crie uma conta para acessar as salas.");
+//   window.location.replace("/login/index.html");
+// };
+
+btnSair.addEventListener("click", () => {
+  const isDeslogar = confirm("Você deseja sair da conta?");
+  if(isDeslogar){
+    logoutCookie("tokenJwt");
+    window.location.replace("/login/index.html");
+  }
+});
 
 form.addEventListener("submit", (e)=>{
   e.preventDefault();
